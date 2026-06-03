@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DENIM & CO — Jeans & Shorts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --dark: #111111;
+      --card: #181818;
+      --yellow: #F5C518;
+      --yellow-dim: #c9a110;
+      --indigo: #4F6EF7;
+      --white: #F5F5F0;
+      --gray: #888;
+      --light-gray: #2a2a2a;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 2px; }
+
+    /* ══════════════ HEADER ══════════════ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    .logo span { color: var(--white); }
+
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    nav a:hover { color: var(--white); }
+
+    .header-actions { display: flex; gap: 16px; align-items: center; }
+
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--white);
+      font-size: 20px;
+    }
+    .cart-count {
+      position: absolute;
+      top: -6px; right: -8px;
+      width: 18px; height: 18px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .btn-header {
+      padding: 10px 22px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-header:hover { background: var(--yellow-dim); transform: translateY(-1px); }
+
+    /* ══════════════ HERO ══════════════ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(79,110,247,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,197,24,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.3);
+      color: var(--yellow);
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      width: fit-content;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag::before { content: '●'; font-size: 8px; }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 8vw, 110px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+      display: block;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(245,245,240,0.6);
+      max-width: 420px;
+      margin-bottom: 40px;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      padding: 16px 36px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { background: var(--yellow-dim); transform: translateY(-2px); }
+
+    .btn-secondary {
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 50px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s 0.2s ease both;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(0.8) contrast(1.05);
+    }
+
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--black) 0%, transparent 30%),
+                  linear-gradient(to top, var(--black) 0%, transparent 20%);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      z-index: 2;
+      background: var(--yellow);
+      color: var(--black);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.2;
+      animation: spin 12s linear infinite;
+      cursor: default;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ══════════════ MARQUEE ══════════════ */
+    .marquee-wrap {
+      background: var(--yellow);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 0;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      color: var(--black);
+      padding: 0 30px;
+    }
+    .marquee-item::after { content: '✦'; margin-left: 30px; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ══════════════ SECTIONS ══════════════ */
+    .section {
+      padding: 100px 60px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(44px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 48px;
+    }
+
+    /* ══════════════ CATEGORIES ══════════════ */
+    .categories {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .cat-card {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--card);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) saturate(0.7);
+      transition: filter 0.5s, transform 0.6s;
+    }
+
+    .cat-card:hover img {
+      filter: brightness(0.45) saturate(0.9);
+      transform: scale(1.04);
+    }
+
+    .cat-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 32px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    }
+
+    .cat-card-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .cat-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .cat-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: gap 0.25s;
+    }
+    .cat-card:hover .cat-card-link { gap: 14px; }
+
+    /* ══════════════ PRODUCTS ══════════════ */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .product-img {
+      position: relative;
+      height: 340px;
+      overflow: hidden;
+      background: var(--light-gray);
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+
+    .product-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-badge.new { background: var(--indigo); color: white; }
+    .product-badge.hot { background: #e84040; color: white; }
+
+    .product-actions {
+      position: absolute;
+      bottom: 14px; right: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.3s;
+    }
+    .product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
+
+    .action-btn {
+      width: 38px; height: 38px;
+      background: rgba(10,10,10,0.85);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      color: white;
+    }
+    .action-btn:hover { background: var(--yellow); color: var(--black); }
+
+    .product-info { padding: 20px; }
+
+    .product-brand {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-sizes {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .size-dot {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-dot:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+    }
+    .product-price-old {
+      font-size: 13px;
+      color: var(--gray);
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    .add-cart-btn {
+      padding: 9px 18px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .add-cart-btn:hover { background: var(--yellow-dim); }
+
+    /* ══════════════ PROMO BANNER ══════════════ */
+    .promo-banner {
+      margin: 0 60px 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 320px;
+    }
+
+    .promo-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4);
+    }
+
+    .promo-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+    }
+
+    .promo-tag {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .promo-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 0.9;
+      margin-bottom: 28px;
+    }
+    .promo-title span { color: var(--yellow); }
+
+    /* ══════════════ FEATURES ══════════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-item {
+      background: var(--dark);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feature-icon { font-size: 32px; }
+
+    .feature-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ══════════════ TESTIMONIALS ══════════════ */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+    }
+
+    .review-stars { color: var(--yellow); font-size: 16px; margin-bottom: 16px; }
+
+    .review-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(245,245,240,0.75);
+      font-style: italic;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .review-author { display: flex; align-items: center; gap: 12px; }
+
+    .review-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--yellow);
+    }
+
+    .review-name { font-size: 14px; font-weight: 600; }
+    .review-city { font-size: 12px; color: var(--gray); }
+
+    /* ══════════════ NEWSLETTER ══════════════ */
+    .newsletter {
+      background: var(--yellow);
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 5vw, 72px);
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .newsletter p {
+      font-size: 16px;
+      color: rgba(10,10,10,0.65);
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 14px 20px;
+      background: var(--black);
+      border: none;
+      border-radius: 4px;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+    .newsletter-input::placeholder { color: rgba(245,245,240,0.4); }
+
+    .newsletter-btn {
+      padding: 14px 28px;
+      background: var(--black);
+      color: var(--yellow);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .newsletter-btn:hover { opacity: 0.85; }
+
+    /* ══════════════ FOOTER ══════════════ */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 60px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo { font-size: 32px; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.8; font-weight: 300; max-width: 240px; }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .social-btn:hover { border-color: var(--yellow); background: rgba(245,197,24,0.1); }
+
+    .footer-col h4 {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ══════════════ CART TOAST ══════════════ */
+    #toast {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 14px 22px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(.34,1.56,.64,1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ══════════════ ADMIN PANEL ══════════════ */
+    .admin-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9998;
+      backdrop-filter: blur(8px);
+    }
+    .admin-overlay.active { display: flex; }
+
+    .admin-panel {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 92vw;
+      max-width: 1100px;
+      max-height: 90vh;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 32px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+      flex-shrink: 0;
+    }
+
+    .admin-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .admin-tab {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--gray);
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-tab.active {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
+    .admin-tab:hover:not(.active) { border-color: var(--yellow); color: var(--yellow); }
+
+    .admin-close {
+      width: 36px; height: 36px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--gray);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .admin-close:hover { border-color: #e84040; color: #e84040; }
+
+    .admin-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── CRUD SECTION ── */
+    .crud-section {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .crud-section.active { display: flex; }
+
+    .crud-toolbar {
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .crud-search {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 16px;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .crud-search:focus { border-color: var(--yellow); }
+    .crud-search::placeholder { color: var(--gray); }
+
+    .btn-add {
+      padding: 10px 20px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .btn-add:hover { background: var(--yellow-dim); }
+
+    .crud-table-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 28px 28px;
+    }
+
+    .crud-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .crud-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .crud-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: rgba(245,245,240,0.85);
+      vertical-align: middle;
+    }
+
+    .crud-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+    .crud-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .crud-badge.active-badge { background: rgba(80,200,100,0.15); color: #4cc;  border: 1px solid rgba(80,200,100,0.3); }
+    .crud-badge.inactive-badge { background: rgba(232,64,64,0.15); color: #e84; border: 1px solid rgba(232,64,64,0.3); }
+    .crud-badge.vip-badge { background: rgba(245,197,24,0.15); color: var(--yellow); border: 1px solid rgba(245,197,24,0.3); }
+
+    .btn-edit, .btn-delete {
+      padding: 5px 12px;
+      border: none;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-edit { background: rgba(79,110,247,0.2); color: var(--indigo); border: 1px solid rgba(79,110,247,0.3); margin-right: 6px; }
+    .btn-edit:hover { background: var(--indigo); color: white; }
+    .btn-delete { background: rgba(232,64,64,0.15); color: #e84040; border: 1px solid rgba(232,64,64,0.3); }
+    .btn-delete:hover { background: #e84040; color: white; }
+
+    /* ── MODAL FORM ── */
+    .form-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    .form-overlay.active { display: flex; }
+
+    .form-modal {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      width: 90vw;
+      max-width: 520px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    }
+
+    .form-modal h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      color: var(--yellow);
+      margin-bottom: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-grid .full { grid-column: 1/-1; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      padding: 10px 14px;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--yellow); }
+    .form-select option { background: var(--dark); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+
+    .btn-cancel {
+      padding: 10px 20px;
+      background: transparent;
+      color: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-cancel:hover { border-color: var(--gray); color: var(--white); }
+
+    .btn-save {
+      padding: 10px 24px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-save:hover { background: var(--yellow-dim); }
+
+    /* ── LOGIN SECTION ── */
+    .login-section {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .login-section.active { display: flex; }
+
+    .login-users-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 28px 28px;
+    }
+
+    /* ── CONFIRM DIALOG ── */
+    .confirm-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+    .confirm-overlay.active { display: flex; }
+
+    .confirm-box {
+      background: var(--dark);
+      border: 1px solid rgba(232,64,64,0.4);
+      border-radius: 10px;
+      padding: 28px 32px;
+      max-width: 380px;
+      text-align: center;
+    }
+    .confirm-box h4 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #e84040; margin-bottom: 10px; }
+    .confirm-box p { font-size: 14px; color: var(--gray); margin-bottom: 22px; }
+    .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+
+    .btn-confirm-delete {
+      padding: 10px 22px;
+      background: #e84040;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* ── ADMIN TRIGGER BTN ── */
+    .admin-trigger {
+      position: fixed;
+      bottom: 90px;
+      right: 28px;
+      width: 48px; height: 48px;
+      background: var(--indigo);
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 9990;
+      box-shadow: 0 4px 20px rgba(79,110,247,0.5);
+      transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .admin-trigger:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(79,110,247,0.7); }
+
+  /* ══════════════ LOGIN DROPDOWN ══════════════ */
+  .user-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .user-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 2px solid var(--white);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    min-width: 160px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .user-display:hover { border-color: var(--yellow); color: var(--yellow); }
+  .user-display .user-icon { font-size: 16px; }
+  .user-display .user-name { flex: 1; text-align: left; }
+  .user-display .chevron { font-size: 10px; transition: transform 0.2s; }
+  .user-box.open .user-display { border-color: var(--yellow); background: rgba(245,197,24,0.08); }
+  .user-box.open .chevron { transform: rotate(180deg); }
+
+  .login-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 300px;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    padding: 24px;
+    z-index: 200;
+    display: none;
+    animation: fadeUp 0.2s ease both;
+  }
+  .user-box.open .login-dropdown { display: block; }
+
+  .login-dropdown-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+    color: var(--yellow);
+    margin-bottom: 18px;
+  }
+
+  .login-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+  .login-field label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .login-field input {
+    padding: 10px 14px;
+    background: var(--light-gray);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .login-field input:focus { border-color: var(--yellow); }
+
+  .login-error {
+    font-size: 12px;
+    color: #e84040;
+    margin-bottom: 10px;
+    display: none;
+  }
+
+  .btn-login-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 10px;
+  }
+  .btn-login-submit:hover { background: var(--yellow-dim); }
+
+  .btn-logout {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #e84040;
+    border: 1px solid rgba(232,64,64,0.3);
+    border-radius: 4px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .btn-logout:hover { background: rgba(232,64,64,0.1); }
+
+  .logged-info {
+    display: none;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: rgba(245,197,24,0.08);
+    border: 1px solid rgba(245,197,24,0.2);
+    border-radius: 4px;
+  }
+  .logged-info .li-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .logged-info .li-role { font-size: 11px; color: var(--yellow); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { height: 50vw; min-height: 300px; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .cat-card { height: 320px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      header { padding: 16px 24px; }
+      nav { display: none; }
+      .section { padding: 60px 24px; }
+      .promo-banner { margin: 0 24px 60px; }
+      .promo-content { padding: 30px; }
+      .newsletter { padding: 60px 24px; }
+      footer { padding: 40px 24px; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast">🛒 ¡Agregado al carrito!</div>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header>
+  <a class="logo" href="#">DENIM <span>&</span> CO</a>
+  <nav>
+    <a href="#categorias">Categorías</a>
+    <a href="#productos">Productos</a>
+    <a href="#ofertas">Ofertas</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <div class="header-actions">
+    <button class="cart-btn" title="Carrito">
+      🛒
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+
+    <!-- USER BOX / LOGIN -->
+    <div class="user-box" id="userBox">
+      <button class="user-display" onclick="toggleLoginDropdown(event)" id="userDisplayBtn">
+        <span class="user-icon">👤</span>
+        <span class="user-name" id="userDisplayName">Iniciar sesión</span>
+        <span class="chevron">▼</span>
+      </button>
+
+      <div class="login-dropdown" id="loginDropdown">
+        <div class="login-dropdown-title">🔐 Acceso</div>
+
+        <!-- Logged-in state -->
+        <div class="logged-info" id="loggedInfo">
+          <div class="li-name" id="loggedName"></div>
+          <div class="li-role" id="loggedRole"></div>
+        </div>
+
+        <!-- Login form -->
+        <div id="loginFormWrap">
+          <div class="login-field">
+            <label>Usuario / Email</label>
+            <input type="email" id="loginEmail" placeholder="tu@correo.com" onkeydown="if(event.key==='Enter')doLogin()" />
+          </div>
+          <div class="login-field">
+            <label>Contraseña</label>
+            <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+          </div>
+          <div class="login-error" id="loginError">Usuario o contraseña incorrectos.</div>
+          <button class="btn-login-submit" onclick="doLogin()">Ingresar</button>
+        </div>
+
+        <button class="btn-logout" id="btnLogout" onclick="doLogout()">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <button class="btn-header" onclick="showToast()">Ver carrito</button>
+  </div>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Nueva colección 2025</div>
+    <h1>ESTILO<em>SIN LÍMITES</em></h1>
+    <p>Jeans y shorts con cortes modernos, telas premium y diseño urbano. Para los que viven a su manera.</p>
+    <div class="hero-buttons">
+      <a href="#productos" class="btn-primary">Comprar ahora →</a>
+      <a href="#categorias" class="btn-secondary">Ver colecciones</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Modelos disponibles</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Clientes satisfechos</div>
+      </div>
+      <div>
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Despacho express</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=1200&auto=format&fit=crop" alt="Jeans hero" />
+    <div class="hero-badge">NUEVA<br>TEMPORADA<br>2025</div>
+  </div>
+</section>
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">JEANS SLIM FIT</span>
+    <span class="marquee-item">SHORTS CARGO</span>
+    <span class="marquee-item">DENIM PREMIUM</span>
+    <span class="marquee-item">ENVÍO GRATIS</span>
+    <span class="marquee-item">NUEVA COLECCIÓN</span>
+    <span class="marquee-item">HASTA 40% OFF</span>
+    <span class="marquee-item">JEANS SLIM FIT</span>
+    <span class="marquee-item">SHORTS CARGO</span>
+    <span class="marquee-item">DENIM PREMIUM</span>
+    <span class="marquee-item">ENVÍO GRATIS</span>
+    <span class="marquee-item">NUEVA COLECCIÓN</span>
+    <span class="marquee-item">HASTA 40% OFF</span>
+  </div>
+</div>
+
+<!-- ══════════════ CATEGORÍAS ══════════════ -->
+<section id="categorias" class="categories">
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?q=80&w=800&auto=format&fit=crop" alt="Jeans slim" />
+      <div class="cat-card-info">
+        <div class="cat-card-label">Para ellos & ellas</div>
+        <h3>JEANS<br>SLIM FIT</h3>
+        <a href="#productos" class="cat-card-link">Ver colección →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f43?q=80&w=800&auto=format&fit=crop" alt="Shorts" />
+      <div class="cat-card-info">
+        <div class="cat-card-label">Temporada verano</div>
+        <h3>SHORTS &<br>BERMUDAS</h3>
+        <a href="#productos" class="cat-card-link">Ver colección →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1475178626620-a4d074967452?q=80&w=800&auto=format&fit=crop" alt="Wide leg" />
+      <div class="cat-card-info">
+        <div class="cat-card-label">Tendencia 2025</div>
+        <h3>WIDE LEG<br>& BAGGY</h3>
+        <a href="#productos" class="cat-card-link">Ver colección →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRODUCTOS ══════════════ -->
+<section id="productos">
+  <div class="section">
+    <div class="section-label">Lo más vendido</div>
+    <h2 class="section-title">PRODUCTOS<br>DESTACADOS</h2>
+    <div class="products-grid">
+
+      <!-- Producto 1 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format&fit=crop" alt="Jean slim azul" />
+          <span class="product-badge hot">🔥 Top venta</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Denim & Co.</div>
+          <div class="product-name">Jean Slim Fit Azul Oscuro</div>
+          <div class="product-sizes">
+            <div class="size-dot">28</div>
+            <div class="size-dot">30</div>
+            <div class="size-dot">32</div>
+            <div class="size-dot">34</div>
+            <div class="size-dot">36</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 129</span>
+              <span class="product-price-old">S/ 180</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=600&auto=format&fit=crop" alt="Short cargo" />
+          <span class="product-badge new">✦ Nuevo</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Urban Line</div>
+          <div class="product-name">Short Cargo Beige Streetwear</div>
+          <div class="product-sizes">
+            <div class="size-dot">S</div>
+            <div class="size-dot">M</div>
+            <div class="size-dot">L</div>
+            <div class="size-dot">XL</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 89</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1548126032-079a0fb0099d?q=80&w=600&auto=format&fit=crop" alt="Jean baggy" />
+          <span class="product-badge">−30%</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Street Edition</div>
+          <div class="product-name">Jean Baggy Wide Leg Gris</div>
+          <div class="product-sizes">
+            <div class="size-dot">28</div>
+            <div class="size-dot">30</div>
+            <div class="size-dot">32</div>
+            <div class="size-dot">34</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 149</span>
+              <span class="product-price-old">S/ 210</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1592301933927-35b597393c0a?q=80&w=600&auto=format&fit=crop" alt="Short denim" />
+          <span class="product-badge new">✦ Nuevo</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Denim & Co.</div>
+          <div class="product-name">Short Denim Lavado Clásico</div>
+          <div class="product-sizes">
+            <div class="size-dot">S</div>
+            <div class="size-dot">M</div>
+            <div class="size-dot">L</div>
+            <div class="size-dot">XL</div>
+            <div class="size-dot">XXL</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 79</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=600&auto=format&fit=crop" alt="Jean negro" />
+          <span class="product-badge hot">🔥 Top venta</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Dark Denim</div>
+          <div class="product-name">Jean Skinny Negro Premium</div>
+          <div class="product-sizes">
+            <div class="size-dot">26</div>
+            <div class="size-dot">28</div>
+            <div class="size-dot">30</div>
+            <div class="size-dot">32</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 159</span>
+              <span class="product-price-old">S/ 200</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Short sport" />
+          <span class="product-badge">−40%</span>
+          <div class="product-actions">
+            <button class="action-btn" title="Favorito">♡</button>
+            <button class="action-btn" title="Vista rápida">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Active Street</div>
+          <div class="product-name">Short Sport con Bolsillos</div>
+          <div class="product-sizes">
+            <div class="size-dot">S</div>
+            <div class="size-dot">M</div>
+            <div class="size-dot">L</div>
+            <div class="size-dot">XL</div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price">S/ 59</span>
+              <span class="product-price-old">S/ 99</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROMO BANNER ══════════════ -->
+<div id="ofertas" class="promo-banner">
+  <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400&auto=format&fit=crop" alt="Oferta especial" />
+  <div class="promo-content">
+    <div class="promo-tag">✦ Oferta por tiempo limitado</div>
+    <h2 class="promo-title">HASTA <span>40% OFF</span><br>EN TODA LA TIENDA</h2>
+    <a href="#productos" class="btn-primary" style="width:fit-content">Aprovechar oferta →</a>
+  </div>
+</div>
+
+<!-- ══════════════ FEATURES ══════════════ -->
+<div class="features-grid">
+  <div class="feature-item">
+    <div class="feature-icon">🚚</div>
+    <div class="feature-title">Envío gratis</div>
+    <div class="feature-desc">En compras mayores a S/ 150. Despacho express a todo Lima en 24–48h.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🔄</div>
+    <div class="feature-title">Cambios fáciles</div>
+    <div class="feature-desc">30 días para cambiar tu talla sin costo. Proceso simple y sin complicaciones.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🏷️</div>
+    <div class="feature-title">Precio justo</div>
+    <div class="feature-desc">Calidad premium a precios accesibles. Sin intermediarios, directo de fábrica.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🔒</div>
+    <div class="feature-title">Pago seguro</div>
+    <div class="feature-desc">Acepta tarjetas, Yape, Plin y transferencias. 100% seguro y encriptado.</div>
+  </div>
+</div>
+
+<!-- ══════════════ TESTIMONIOS ══════════════ -->
+<section>
+  <div class="section">
+    <div class="section-label">Lo que dicen nuestros clientes</div>
+    <h2 class="section-title">OPINIONES<br>REALES</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Los jeans son increíbles. La tela es muy cómoda y el corte slim queda perfecto. Los pedí el lunes y llegaron el martes."</div>
+        <div class="review-author">
+          <img class="review-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=80&auto=format&fit=crop" alt="user">
+          <div>
+            <div class="review-name">Carlos M.</div>
+            <div class="review-city">Lima, Miraflores</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Me encantaron los shorts de verano. Son exactamente como en la foto y la tela respira muy bien. ¡Ya hice mi segundo pedido!"</div>
+        <div class="review-author">
+          <img class="review-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=80&auto=format&fit=crop" alt="user">
+          <div>
+            <div class="review-name">Valeria R.</div>
+            <div class="review-city">Lima, San Isidro</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-text">"Muy buena calidad para el precio. El cambio de talla fue súper fácil. El jean baggy es lo que estaba buscando desde hace tiempo."</div>
+        <div class="review-author">
+          <img class="review-avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=80&auto=format&fit=crop" alt="user">
+          <div>
+            <div class="review-name">Diego P.</div>
+            <div class="review-city">Lima, Barranco</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ NEWSLETTER ══════════════ -->
+<div class="newsletter">
+  <h2>SUSCRÍBETE Y<br>OBTÉN 10% OFF</h2>
+  <p>Recibe las últimas novedades, ofertas exclusivas y acceso anticipado a nuevas colecciones.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="tu@correo.com" />
+    <button class="newsletter-btn">Suscribirme</button>
+  </div>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="contacto">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="logo" href="#">DENIM <span style="color:var(--white)">&</span> CO</a>
+      <p>Tu tienda de jeans y shorts con estilo urbano. Calidad premium, precios justos y envío rápido en Lima.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#" title="Instagram">📷</a>
+        <a class="social-btn" href="#" title="TikTok">🎵</a>
+        <a class="social-btn" href="#" title="Facebook">📘</a>
+        <a class="social-btn" href="#" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#">Jeans de hombre</a></li>
+        <li><a href="#">Jeans de mujer</a></li>
+        <li><a href="#">Shorts</a></li>
+        <li><a href="#">Ofertas</a></li>
+        <li><a href="#">Novedades</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="#">Guía de tallas</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Cambios y devoluciones</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="#">📍 Lima, Perú</a></li>
+        <li><a href="#">📞 +51 987 654 321</a></li>
+        <li><a href="#">✉️ hola@denimy.pe</a></li>
+        <li><a href="#">🕐 Lun–Sáb 9am–7pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Denim & Co. — Todos los derechos reservados.</span>
+    <span>Hecho con ♥ en Lima, Perú</span>
+  </div>
+</footer>
+
+<!-- ══════════════ ADMIN TRIGGER ══════════════ -->
+<button class="admin-trigger" onclick="openAdmin()" title="Panel Admin">⚙️</button>
+
+<!-- ══════════════ ADMIN PANEL ══════════════ -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">⚙️ Panel de Administración</div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('login')">🔐 Usuarios</button>
+        <button class="admin-tab" onclick="switchTab('productos')">👖 Productos</button>
+        <button class="admin-tab" onclick="switchTab('servicios')">🛠️ Servicios</button>
+        <button class="admin-tab" onclick="switchTab('clientes')">👥 Clientes</button>
+      </div>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <div class="admin-body">
+      <!-- ── USUARIOS / LOGIN ── -->
+      <div class="crud-section active" id="tab-login">
+        <div class="crud-toolbar">
+          <input class="crud-search" type="text" placeholder="🔍 Buscar usuario..." oninput="filterTable('login', this.value)" />
+          <button class="btn-add" onclick="openForm('login')">＋ Nuevo usuario</button>
+        </div>
+        <div class="crud-table-wrap">
+          <table class="crud-table" id="table-login">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-login"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── PRODUCTOS ── -->
+      <div class="crud-section" id="tab-productos">
+        <div class="crud-toolbar">
+          <input class="crud-search" type="text" placeholder="🔍 Buscar producto..." oninput="filterTable('productos', this.value)" />
+          <button class="btn-add" onclick="openForm('productos')">＋ Nuevo producto</button>
+        </div>
+        <div class="crud-table-wrap">
+          <table class="crud-table" id="table-productos">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nombre</th><th>Marca</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-productos"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── SERVICIOS ── -->
+      <div class="crud-section" id="tab-servicios">
+        <div class="crud-toolbar">
+          <input class="crud-search" type="text" placeholder="🔍 Buscar servicio..." oninput="filterTable('servicios', this.value)" />
+          <button class="btn-add" onclick="openForm('servicios')">＋ Nuevo servicio</button>
+        </div>
+        <div class="crud-table-wrap">
+          <table class="crud-table" id="table-servicios">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-servicios"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── CLIENTES ── -->
+      <div class="crud-section" id="tab-clientes">
+        <div class="crud-toolbar">
+          <input class="crud-search" type="text" placeholder="🔍 Buscar cliente..." oninput="filterTable('clientes', this.value)" />
+          <button class="btn-add" onclick="openForm('clientes')">＋ Nuevo cliente</button>
+        </div>
+        <div class="crud-table-wrap">
+          <table class="crud-table" id="table-clientes">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Ciudad</th><th>Tipo</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-clientes"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FORM MODAL ══════════════ -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-modal">
+    <h3 id="formTitle">Nuevo Registro</h3>
+    <div id="formFields"></div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeForm()">Cancelar</button>
+      <button class="btn-save" onclick="saveRecord()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONFIRM DELETE ══════════════ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h4>¿Eliminar registro?</h4>
+    <p>Esta acción no se puede deshacer.</p>
+    <div class="confirm-actions">
+      <button class="btn-cancel" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn-confirm-delete" onclick="confirmDelete()">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cartCount = 0;
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cart-count').textContent = cartCount;
+    showToast();
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .review-card, .feature-item, .cat-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // ══════════════ CRUD ENGINE ══════════════
+
+  // Data stores
+  const db = {
+    login: [
+      { id: 1, nombre: 'Admin Principal', email: 'admin@denimy.pe', rol: 'Admin', estado: 'Activo' },
+      { id: 2, nombre: 'Vendedora Lima', email: 'ventas@denimy.pe', rol: 'Vendedor', estado: 'Activo' },
+      { id: 3, nombre: 'Carlos Soporte', email: 'soporte@denimy.pe', rol: 'Soporte', estado: 'Inactivo' },
+    ],
+    productos: [
+      { id: 1, nombre: 'Jean Slim Fit Azul Oscuro', marca: 'Denim & Co.', precio: 'S/ 129', stock: 42, estado: 'Activo' },
+      { id: 2, nombre: 'Short Cargo Beige Streetwear', marca: 'Urban Line', precio: 'S/ 89', stock: 28, estado: 'Activo' },
+      { id: 3, nombre: 'Jean Baggy Wide Leg Gris', marca: 'Street Edition', precio: 'S/ 149', stock: 15, estado: 'Activo' },
+      { id: 4, nombre: 'Short Denim Lavado Clásico', marca: 'Denim & Co.', precio: 'S/ 79', stock: 33, estado: 'Activo' },
+      { id: 5, nombre: 'Jean Skinny Negro Premium', marca: 'Dark Denim', precio: 'S/ 159', stock: 20, estado: 'Activo' },
+      { id: 6, nombre: 'Short Sport con Bolsillos', marca: 'Active Street', precio: 'S/ 59', stock: 0, estado: 'Inactivo' },
+    ],
+    servicios: [
+      { id: 1, nombre: 'Envío Express Lima', descripcion: 'Entrega en 24–48h a domicilio en Lima', precio: 'S/ 10', estado: 'Activo' },
+      { id: 2, nombre: 'Cambio de Talla', descripcion: 'Cambio gratuito dentro de 30 días', precio: 'Gratis', estado: 'Activo' },
+      { id: 3, nombre: 'Personalización', descripcion: 'Bordado o parche con nombre o logo', precio: 'S/ 25', estado: 'Activo' },
+      { id: 4, nombre: 'Retiro en Tienda', descripcion: 'Recoge tu pedido en nuestro local', precio: 'Gratis', estado: 'Activo' },
+      { id: 5, nombre: 'Envío Provincias', descripcion: 'Cobertura Olva Courier a nivel nacional', precio: 'S/ 18', estado: 'Inactivo' },
+    ],
+    clientes: [
+      { id: 1, nombre: 'Carlos Mendoza', email: 'carlos.m@gmail.com', telefono: '+51 987 111 222', ciudad: 'Miraflores', tipo: 'VIP' },
+      { id: 2, nombre: 'Valeria Ramos', email: 'vale.r@gmail.com', telefono: '+51 987 333 444', ciudad: 'San Isidro', tipo: 'Regular' },
+      { id: 3, nombre: 'Diego Paredes', email: 'diego.p@gmail.com', telefono: '+51 987 555 666', ciudad: 'Barranco', tipo: 'Regular' },
+      { id: 4, nombre: 'Lucía Torres', email: 'lu.torres@gmail.com', telefono: '+51 987 777 888', ciudad: 'Surco', tipo: 'VIP' },
+      { id: 5, nombre: 'Rodrigo Vega', email: 'rodri.v@gmail.com', telefono: '+51 987 999 000', ciudad: 'La Molina', tipo: 'Regular' },
+    ],
+  };
+
+  const nextId = { login: 4, productos: 7, servicios: 6, clientes: 6 };
+
+  // Current state
+  let currentTab = 'login';
+  let editingId = null;
+  let deletingTab = null;
+  let deletingId = null;
+
+  // Field configs per section
+  const formConfigs = {
+    login: {
+      title: (id) => id ? 'Editar Usuario' : 'Nuevo Usuario',
+      fields: [
+        { key: 'nombre', label: 'Nombre completo', type: 'text', full: true },
+        { key: 'email', label: 'Correo electrónico', type: 'email' },
+        { key: 'rol', label: 'Rol', type: 'select', options: ['Admin', 'Vendedor', 'Soporte', 'Almacén'] },
+        { key: 'estado', label: 'Estado', type: 'select', options: ['Activo', 'Inactivo'] },
+        { key: 'password', label: 'Contraseña', type: 'password', placeholder: 'Dejar vacío para no cambiar' },
+      ]
+    },
+    productos: {
+      title: (id) => id ? 'Editar Producto' : 'Nuevo Producto',
+      fields: [
+        { key: 'nombre', label: 'Nombre del producto', type: 'text', full: true },
+        { key: 'marca', label: 'Marca', type: 'text' },
+        { key: 'precio', label: 'Precio (S/)', type: 'text', placeholder: 'Ej: S/ 129' },
+        { key: 'stock', label: 'Stock', type: 'number' },
+        { key: 'estado', label: 'Estado', type: 'select', options: ['Activo', 'Inactivo'] },
+      ]
+    },
+    servicios: {
+      title: (id) => id ? 'Editar Servicio' : 'Nuevo Servicio',
+      fields: [
+        { key: 'nombre', label: 'Nombre del servicio', type: 'text', full: true },
+        { key: 'descripcion', label: 'Descripción', type: 'textarea', full: true },
+        { key: 'precio', label: 'Precio', type: 'text', placeholder: 'Ej: S/ 10 o Gratis' },
+        { key: 'estado', label: 'Estado', type: 'select', options: ['Activo', 'Inactivo'] },
+      ]
+    },
+    clientes: {
+      title: (id) => id ? 'Editar Cliente' : 'Nuevo Cliente',
+      fields: [
+        { key: 'nombre', label: 'Nombre completo', type: 'text', full: true },
+        { key: 'email', label: 'Correo electrónico', type: 'email' },
+        { key: 'telefono', label: 'Teléfono', type: 'text', placeholder: '+51 9XX XXX XXX' },
+        { key: 'ciudad', label: 'Ciudad / Distrito', type: 'text' },
+        { key: 'tipo', label: 'Tipo', type: 'select', options: ['Regular', 'VIP', 'Mayorista'] },
+      ]
+    }
+  };
+
+  // ── Render tables ──
+  function renderRow(tab, record) {
+    if (tab === 'login') {
+      const badge = record.estado === 'Activo'
+        ? '<span class="crud-badge active-badge">Activo</span>'
+        : '<span class="crud-badge inactive-badge">Inactivo</span>';
+      return `<tr>
+        <td>#${record.id}</td>
+        <td>${record.nombre}</td>
+        <td>${record.email}</td>
+        <td>${record.rol}</td>
+        <td>${badge}</td>
+        <td><button class="btn-edit" onclick="openForm('login',${record.id})">Editar</button><button class="btn-delete" onclick="askDelete('login',${record.id})">Eliminar</button></td>
+      </tr>`;
+    }
+    if (tab === 'productos') {
+      const badge = record.estado === 'Activo'
+        ? '<span class="crud-badge active-badge">Activo</span>'
+        : '<span class="crud-badge inactive-badge">Inactivo</span>';
+      return `<tr>
+        <td>#${record.id}</td>
+        <td>${record.nombre}</td>
+        <td>${record.marca}</td>
+        <td>${record.precio}</td>
+        <td>${record.stock}</td>
+        <td>${badge}</td>
+        <td><button class="btn-edit" onclick="openForm('productos',${record.id})">Editar</button><button class="btn-delete" onclick="askDelete('productos',${record.id})">Eliminar</button></td>
+      </tr>`;
+    }
+    if (tab === 'servicios') {
+      const badge = record.estado === 'Activo'
+        ? '<span class="crud-badge active-badge">Activo</span>'
+        : '<span class="crud-badge inactive-badge">Inactivo</span>';
+      return `<tr>
+        <td>#${record.id}</td>
+        <td>${record.nombre}</td>
+        <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${record.descripcion}</td>
+        <td>${record.precio}</td>
+        <td>${badge}</td>
+        <td><button class="btn-edit" onclick="openForm('servicios',${record.id})">Editar</button><button class="btn-delete" onclick="askDelete('servicios',${record.id})">Eliminar</button></td>
+      </tr>`;
+    }
+    if (tab === 'clientes') {
+      const tipoBadge = record.tipo === 'VIP'
+        ? '<span class="crud-badge vip-badge">VIP</span>'
+        : `<span style="font-size:12px;color:var(--gray)">${record.tipo}</span>`;
+      return `<tr>
+        <td>#${record.id}</td>
+        <td>${record.nombre}</td>
+        <td>${record.email}</td>
+        <td>${record.telefono}</td>
+        <td>${record.ciudad}</td>
+        <td>${tipoBadge}</td>
+        <td><button class="btn-edit" onclick="openForm('clientes',${record.id})">Editar</button><button class="btn-delete" onclick="askDelete('clientes',${record.id})">Eliminar</button></td>
+      </tr>`;
+    }
+  }
+
+  function renderTable(tab, data) {
+    const tbody = document.getElementById('tbody-' + tab);
+    if (!data) data = db[tab];
+    tbody.innerHTML = data.map(r => renderRow(tab, r)).join('');
+  }
+
+  function renderAll() {
+    ['login','productos','servicios','clientes'].forEach(t => renderTable(t));
+  }
+
+  // ── Search / filter ──
+  function filterTable(tab, query) {
+    const q = query.toLowerCase();
+    const filtered = db[tab].filter(r =>
+      Object.values(r).some(v => String(v).toLowerCase().includes(q))
+    );
+    renderTable(tab, filtered);
+  }
+
+  // ── Tab switch ──
+  function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.crud-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+    renderTable(tab);
+  }
+
+  // ── Admin panel open/close ──
+  function openAdmin() {
+    renderAll();
+    document.getElementById('adminOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ── Form open/close ──
+  function openForm(tab, id = null) {
+    currentTab = tab;
+    editingId = id;
+    const cfg = formConfigs[tab];
+    const record = id ? db[tab].find(r => r.id === id) : {};
+    document.getElementById('formTitle').textContent = cfg.title(id);
+
+    const html = `<div class="form-grid">` +
+      cfg.fields.map(f => {
+        const val = record[f.key] || '';
+        const cls = f.full ? 'form-group full' : 'form-group';
+        let input = '';
+        if (f.type === 'select') {
+          input = `<select class="form-select" id="field-${f.key}">` +
+            f.options.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o}</option>`).join('') +
+            `</select>`;
+        } else if (f.type === 'textarea') {
+          input = `<textarea class="form-textarea" id="field-${f.key}" placeholder="${f.placeholder||''}">${val}</textarea>`;
+        } else {
+          input = `<input class="form-input" id="field-${f.key}" type="${f.type}" value="${f.type==='password'?'':val}" placeholder="${f.placeholder||''}"/>`;
+        }
+        return `<div class="${cls}"><label class="form-label">${f.label}</label>${input}</div>`;
+      }).join('') +
+      `</div>`;
+
+    document.getElementById('formFields').innerHTML = html;
+    document.getElementById('formOverlay').classList.add('active');
+  }
+
+  function closeForm() {
+    document.getElementById('formOverlay').classList.remove('active');
+    editingId = null;
+  }
+
+  // ── Save record (Create / Update) ──
+  function saveRecord() {
+    const cfg = formConfigs[currentTab];
+    const record = {};
+    for (const f of cfg.fields) {
+      const el = document.getElementById('field-' + f.key);
+      if (el) record[f.key] = el.value.trim();
+    }
+
+    if (editingId) {
+      // Update
+      const idx = db[currentTab].findIndex(r => r.id === editingId);
+      if (idx !== -1) {
+        Object.assign(db[currentTab][idx], record);
+        // Don't overwrite id
+        db[currentTab][idx].id = editingId;
+      }
+    } else {
+      // Create
+      record.id = nextId[currentTab]++;
+      db[currentTab].push(record);
+    }
+
+    renderTable(currentTab);
+    closeForm();
+    showCrudToast(editingId ? '✏️ Registro actualizado' : '✅ Registro creado');
+  }
+
+  // ── Delete ──
+  function askDelete(tab, id) {
+    deletingTab = tab;
+    deletingId = id;
+    document.getElementById('confirmOverlay').classList.add('active');
+  }
+
+  function closeConfirm() {
+    document.getElementById('confirmOverlay').classList.remove('active');
+    deletingTab = null;
+    deletingId = null;
+  }
+
+  function confirmDelete() {
+    db[deletingTab] = db[deletingTab].filter(r => r.id !== deletingId);
+    renderTable(deletingTab);
+    closeConfirm();
+    showCrudToast('🗑️ Registro eliminado');
+  }
+
+  // ── Toast for CRUD ──
+  function showCrudToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => {
+      t.classList.remove('show');
+      t.textContent = '🛒 ¡Agregado al carrito!';
+    }, 2500);
+  }
+
+  // Close overlays on backdrop click
+  document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+  });
+  document.getElementById('formOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeForm();
+  });
+  document.getElementById('confirmOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeConfirm();
+  });
+
+  // ══════════════ LOGIN / LOGOUT ══════════════
+
+  let currentUser = null;
+
+  function toggleLoginDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('userBox').classList.toggle('open');
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    const box = document.getElementById('userBox');
+    if (box && !box.contains(e.target)) {
+      box.classList.remove('open');
+    }
+  });
+
+  function doLogin() {
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('loginPass').value.trim();
+    const errEl = document.getElementById('loginError');
+
+    // Validate against users in db.login (default password = "1234" for demo)
+    const user = db.login.find(u =>
+      u.email.toLowerCase() === email && u.estado === 'Activo'
+    );
+
+    // Simple demo: any active user + password "1234" (or match stored if set)
+    const validPass = pass === '1234' || (user && user.password && user.password === pass);
+
+    if (user && validPass) {
+      currentUser = user;
+      errEl.style.display = 'none';
+      updateHeaderUser();
+      document.getElementById('userBox').classList.remove('open');
+      showCrudToast('👋 Bienvenido, ' + user.nombre.split(' ')[0] + '!');
+    } else {
+      errEl.style.display = 'block';
+    }
+  }
+
+  function doLogout() {
+    currentUser = null;
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginError').style.display = 'none';
+    updateHeaderUser();
+    document.getElementById('userBox').classList.remove('open');
+    showCrudToast('👋 Sesión cerrada');
+  }
+
+  function updateHeaderUser() {
+    const nameEl      = document.getElementById('userDisplayName');
+    const loggedInfo  = document.getElementById('loggedInfo');
+    const loginForm   = document.getElementById('loginFormWrap');
+    const logoutBtn   = document.getElementById('btnLogout');
+    const loggedName  = document.getElementById('loggedName');
+    const loggedRole  = document.getElementById('loggedRole');
+
+    if (currentUser) {
+      nameEl.textContent    = currentUser.nombre.split(' ')[0];
+      loggedName.textContent = currentUser.nombre;
+      loggedRole.textContent = currentUser.rol;
+      loggedInfo.style.display  = 'block';
+      loginForm.style.display   = 'none';
+      logoutBtn.style.display   = 'block';
+    } else {
+      nameEl.textContent        = 'Iniciar sesión';
+      loggedInfo.style.display  = 'none';
+      loginForm.style.display   = 'block';
+      logoutBtn.style.display   = 'none';
+    }
+  }
+</script>
+</body>
+</html>
